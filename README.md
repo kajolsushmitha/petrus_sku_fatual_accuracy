@@ -1,4 +1,4 @@
-# SKU Manufacture & Accuracy Forecaster
+# SKU Manufacture & Fatual Accuracy prediction
 
 An interactive AI web application built with Streamlit and TensorFlow/Keras. This application uses a Long Short-Term Memory (LSTM) Neural Network to generate future manufacturing quantity and accuracy forecasts based on historical SKU data.
 
