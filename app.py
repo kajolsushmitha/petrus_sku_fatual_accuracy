@@ -42,7 +42,11 @@ st.markdown("""
     h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
         display: none !important;
     }
-    
+    /* Hide Streamlit Cloud Default UI Elements */
+    header {display: none !important;}
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    .stDeployButton {display:none;}
     /* Hide the entire native dataframe hover toolbar (Download, Search, Fullscreen) */
     div[data-testid="stElementToolbar"] {
         display: none !important;
