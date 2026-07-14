@@ -39,3 +39,13 @@ Then, open your web browser and navigate to `http://localhost:8501`.
 - `app.py`: The main Streamlit web application and UI layout.
 - `model_utils.py`: Contains all the machine learning logic, data processing, and LSTM model architecture.
 - `requirements.txt`: Python package dependencies.
+
+## Understanding the Forecast Output
+
+![Forecast Output Example](forecast_output.png)
+
+When you generate a forecast for a specific SKU and target month, the AI provides three key metrics:
+
+1. **📦 Factual Qty (Forecast)**: This represents predicted real-world demand or "sold" quantity for that specific future month. It uses historical growth patterns to estimate how many units will actually be needed by customers.
+2. **🎯 Predicted Accuracy**: This percentage indicates the expected manufacturing accuracy or yield for that month, based on historical accuracy trends (Actual Produced vs. Factual Sold) for this specific SKU.
+3. **⚙️ Recommended Manufacture Qty**: This is the final, mathematically adjusted quantity you should actually produce. It is calculated by taking the *Factual Qty (Forecast)* and dividing it by the *Predicted Accuracy*. For example, if you expect to sell 785 units but historically only have a 96.39% accuracy yield, you must manufacture ~814 units to safely meet the demand.

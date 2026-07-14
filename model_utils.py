@@ -154,7 +154,7 @@ def forecast_sku(model, growth_scaler, per_sku, df, sku_to_id, sku, target_month
         m_cos = [np.cos(2 * np.pi * m / 12) for m in w_months]
         feats = np.stack([w_growth, w_acc, m_sin, m_cos], axis=1)[np.newaxis, :, :]
 
-        pred = model.predict([feats, sku_id_arr], verbose=0)[0]
+        pred = model.predict_on_batch([feats, sku_id_arr])[0]
         growth_real = float(growth_scaler.inverse_transform([[pred[0]]])[0][0])
         level = level * (1 + growth_real)   
 
