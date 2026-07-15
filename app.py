@@ -117,7 +117,21 @@ st.markdown("### Generate high-precision for future manufacturing forecasts.")
 
 if uploaded_file is not None:
     # Read the raw CSV
-    raw_df = pd.read_csv(uploaded_file)
+    try:
+        raw_df = pd.read_csv(uploaded_file)
+        
+        # File Validation: Prevent "garbage in" from crashing the app
+        expected_columns = ['SKU', 'Month', 'Factual Qty (Sold)', 'Actual Qty (Produced)']
+        missing_columns = [col for col in expected_columns if col not in raw_df.columns]
+        
+        if missing_columns:
+            st.error(f"⚠️ **Invalid File Format!** The uploaded CSV is missing required columns: **{', '.join(missing_columns)}**")
+            st.info(f"Please ensure your dataset strictly contains the following columns: `{', '.join(expected_columns)}`")
+            st.stop()
+            
+    except Exception as e:
+        st.error("⚠️ **Error reading file:** Please ensure you uploaded a valid CSV file.")
+        st.stop()
     
     with st.spinner("Processing data..."):
         df = load_data(raw_df)
